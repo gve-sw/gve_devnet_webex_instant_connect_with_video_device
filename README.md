@@ -44,7 +44,8 @@ Run app.py:
 
 ```python3 app.py```  
 
-Browse to the URL where the flask aplication is running (i.e. http://127.0.0.1:5000/ ) . You will be presented with a page where you can click on "Generate Links" to get started. 
+Browse to the URL where the flask aplication is running (i.e. http://127.0.0.1:5000/ ) . You will be presented with a page where you can edit the base subject to be used 
+(originally populated from the .env file) and then click on "Generate Links" to get started. The base subject cannot be blank.   
 If you wish to add a Webex user to the temporary space so they can join the session with their personal device, specify their Webex ID in the text field before clicking on Generate Links
 
 

@@ -19,10 +19,15 @@ or implied.
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="expires" content="0">
-<link rel="stylesheet" href="//code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
-<script src="//code.jquery.com/jquery-1.7.2.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+  <script src="//code.jquery.com/jquery-1.7.2.min.js"></script>
 <script src="//code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
-
+  <script>
+  // call when the form is fully loaded to validate if we activate the submit button
+  $(function() {
+    btnActivation();
+  });
+  </script>
 
 </head>
 <body>
@@ -33,11 +38,23 @@ or implied.
       <h1>Instant Connect tester</h1>
     </div>
 
-    <form action = "/teleconsultCreate" method = "POST">
-     <p>Webex ID (email) to add to space (optional) <input type = "text" name = "WebexID" /></p>
-     <p><input type = "submit" value = "Generate Links" /></p>
+    <form name="inputForm"  action = "/teleconsultCreate" method = "POST">
+      <p>IC Base Subject (required) <input id="baseSub" type = "text" name = "ICBaseSubject" value="{{theBase}}" onkeyup="btnActivation()" required/></p>
+     <p>Webex ID (email) to add to space (optional) <input type = "text" name = "WebexID"  /></p>
+     <p><input type = "submit" value = "Generate Links" id="submit_button"  /></p>
     </form>
+    <script type="text/javascript">
+        function btnActivation(){
+            if(!document.getElementById('baseSub').value.length){
+                $('#submit_button').button('disable');
+            }else{
+                $('#submit_button').button('enable');
+            }
+        }
 
-  </div>	
+    </script>
+  </div>
+
 </body>
 </html>
+

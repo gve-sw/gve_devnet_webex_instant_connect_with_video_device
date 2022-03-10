@@ -35,7 +35,6 @@ def teleconsultCreate():
         IC_AUDIENCE = os.environ.get("IC_AUDIENCE")
         IC_ACCESS_TOKEN = os.environ.get("IC_ACCESS_TOKEN")
         IC_URL_DURATION = os.environ.get("IC_URL_DURATION")
-        IC_BASE_SUBJECT = os.environ.get("IC_BASE_SUBJECT")
         IC_AGENT_BASEURL = os.environ.get("IC_AGENT_BASEURL")
         IC_CLIENT_BASEURL = os.environ.get("IC_CLIENT_BASEURL")
         IC_HOST_BASEURL = os.environ.get("IC_HOST_BASEURL")
@@ -46,13 +45,14 @@ def teleconsultCreate():
         print(resultDict)
 
         theWebexID=resultDict['WebexID']
+        confirmedBaseSubject=resultDict['ICBaseSubject']
 
         url = IC_API_URL
 
         payload = json.dumps({
             "aud": IC_AUDIENCE,
             "jwt": {
-                "sub": IC_BASE_SUBJECT, #using same subject will return same consultation always!,
+                "sub": confirmedBaseSubject, #using same subject will return same consultation always!,
                 "exp": int(time.time())  + int(IC_URL_DURATION)
             }
         })
@@ -106,7 +106,8 @@ def teleconsultCreate():
 ##Routes
 @app.route('/')
 def index():
-    return render_template('consult.html')
+    IC_BASE_SUBJECT = os.environ.get("IC_BASE_SUBJECT")
+    return render_template('consult.html',theBase=IC_BASE_SUBJECT)
 
 if __name__ == "__main__":
     app.run(port=5000,debug=True)
