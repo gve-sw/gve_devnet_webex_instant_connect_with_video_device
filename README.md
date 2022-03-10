@@ -13,6 +13,9 @@ by "dialing in" with the extracted SIP URI for the session and be automatically 
 * Webex Instant Connect
 * Webex Room or Desk device
 
+## Requirements  
+* Python 3.6 or later  
+
 
 ## Prerequisites
 Webex instant connect subscription:  https://instant.webex.com/  
@@ -24,22 +27,22 @@ NOTE: To complete this prerequisite you will need to login on instant.webex.com 
         `IC_API_URL` is the URL for the Webex Instant Connect API (default value is https://mtg-broker-a.wbx2.com/api/v1/joseencrypt )   
         `IC_SPACE_API_URL` is the URL for the Webex Instant Connect space API (default value is https://mtg-broker-a.wbx2.com/api/v1/space )   
         `IC_AUDIENCE` is the "Audience" string provided to you when you register to use the Instant Connect Service  
-        `IC_ACCESS_TOKEN` is a valid Webex Access token from the organization you register to use Instant Connect.  
+        `IC_ACCESS_TOKEN` is a valid Webex Access token from the organization you register to use Instant Connect. You can use the access token of a bot you create in your organization. More details on creating a bot and obtaining the access token here: https://developer.webex.com/docs/bots  
         `IC_URL_DURATION` is the the expiration time given as the number of seconds from the Unix Epoch (1970-01-01T00:00:00Z UTC) on or after which the JWT will not be accepted for processing. If not specified will be set for 15 minutes later than the time when the request was made    
-        `IC_BASE_SUBJECT`  A unique value in your organization which will be used to place hosts and guests into the same collaboration space. This claim may contain only letters, numbers, and hyphens  
+        `IC_BASE_SUBJECT`  A unique value in your organization which will be used to place hosts and guests into the same collaboration space. This claim may contain only letters, numbers, and hyphens. This value is mandatory.   
         `IC_HOST_BASEURL` is the base URL to use with Instant Connect for the health provider or "host" without a need to log in.  Check the Instant Connect documentation for current values (default value is https://instant.webex.com/hc/v1/login?int=jose&v=1&data=)  
         `IC_AGENT_BASEURL` is the base URL to use with Instant Connect to force the host to log into Webex.  Check the Instant Connect documentation for current values (default value is https://instant.webex.com/hc/v1/login?&fli=true&int=jose&data=)  
         `IC_CLIENT_BASEURL` is the base URL to use with Instant Connect to use with the Guest without a need to log in. Check the Instant Connect documentation for current values (default value is https://instant.webex.com/hc/v1/talk?int=jose&data= )  
  
   - Install the required python libraries in your environment:  
-``` pip install -r requirements.txt```  
+``` pip3 install -r requirements.txt```  
 
 
 ## Usage
 
 Run app.py:  
 
-```python app.py```  
+```python3 app.py```  
 
 Browse to the URL where the flask aplication is running (i.e. http://127.0.0.1:5000/ ) . You will be presented with a page where you can click on "Generate Links" to get started. 
 If you wish to add a Webex user to the temporary space so they can join the session with their personal device, specify their Webex ID in the text field before clicking on Generate Links
